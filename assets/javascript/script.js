@@ -24,7 +24,7 @@ $("#submitTopic").on("click", function (event) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        if (response.data.length === 0) {
+        if (response.data.length == 0) {
             alert("No Gifs found for this musician");
         } else if (topics.indexOf(topic) != -1) {
             alert("Musician already exists");

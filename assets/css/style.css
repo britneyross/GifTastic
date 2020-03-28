@@ -1,0 +1,27 @@
+h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-left: 20px;
+    color: indigo;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: lightsteelblue;
+}
+
+.buttons-view{
+    padding: 20px;
+}
+.topic{
+    margin: 5px;
+}
+.gifDiv{
+    float: left;
+    margin-right: 20px;
+}
+
+label{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: indigo;
+    font-size: 30px;;
+}
