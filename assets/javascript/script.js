@@ -20,6 +20,7 @@ $("#submitTopic").on("click", function (event) {
 
     //Performing ajax get request to query URL
     //Alerts user if no gifs are found in search results and if musician already exists in list
+    //TODO: user only alerted that topic already exists only if entered in search bar twice. Does not take into account the topics already listed by default
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -35,6 +36,7 @@ $("#submitTopic").on("click", function (event) {
     });
 });
 
+//AJAX call to GIPHY to retrieve gifs with limit of 10
 function displayGifs() {
     var topic = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=wfAmUDkYrYxeI6G0AVrUgTTWmkwg1TXD&limit=10";
@@ -68,6 +70,8 @@ function displayGifs() {
     });
 };
 
+//Play gif on click
+//TODO: pause gif on click
 function playGif() {
     if ($(this).attr("data-state") === "still") {
         let animate_link = $(this).attr('data-animate'); 
