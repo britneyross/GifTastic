@@ -20,14 +20,13 @@ $("#submitTopic").on("click", function (event) {
 
     //Performing ajax get request to query URL
     //Alerts user if no gifs are found in search results and if musician already exists in list
-    //TODO: user only alerted that topic already exists only if entered in search bar twice. Does not take into account the topics already listed by default
+    //TODO: Add "no results found" alert
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        if (response.data.length == 0) {
-            alert("No Gifs found for this musician");
-        } else if (topics.indexOf(topic) != -1) {
+        var topic_lowercase = topics.toLocaleString().toLowerCase().split(',');
+        if (topic_lowercase.includes(topic)) {
             alert("Musician already exists");
         } else {
             topics.push(topic);
@@ -47,7 +46,7 @@ function displayGifs() {
         console.log(response);
 
         $(".gifs").empty();
-        for (var i = 0; i < response.data.length; i++) {    
+        for (var i = 0; i < response.data.length; i++) {
             var gifDiv = $("<div>");
             gifDiv.addClass("gifDiv");
             gifDiv.html("<p>Rating: " + response.data[i].rating.toUpperCase() + "</p>");
@@ -71,13 +70,15 @@ function displayGifs() {
 };
 
 //Play gif on click
-//TODO: pause gif on click
+//Pause gif on click
 function playGif() {
     if ($(this).attr("data-state") === "still") {
-        let animate_link = $(this).attr('data-animate'); 
+        $(this).attr("data-state", "animate");
+        let animate_link = $(this).attr('data-animate');
         $(this).attr("src", animate_link);
     }
     else {
+        $(this).attr("data-state", "still");
         let still_link = $(this).attr('data-still');
         $(this).attr("src", still_link);
     }
