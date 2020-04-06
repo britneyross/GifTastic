@@ -20,14 +20,18 @@ $("#submitTopic").on("click", function (event) {
 
     //Performing ajax get request to query URL
     //Alerts user if no gifs are found in search results and if musician already exists in list
-    //TODO: Add "no results found" alert
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         var topic_lowercase = topics.toLocaleString().toLowerCase().split(',');
-        if (topic_lowercase.includes(topic)) {
+        if (response.data.length == 0){
+            alert ("No musicians found");
+        }
+        
+        else if(topic_lowercase.includes(topic)) {
             alert("Musician already exists");
+
         } else {
             topics.push(topic);
             renderButtons();
